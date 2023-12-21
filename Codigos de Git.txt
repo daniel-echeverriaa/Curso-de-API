@@ -1,0 +1,5 @@
+git checkout -b main
+git commit -m 
+git remote add origin
+$ git pull origin main --allow-unrelated-histories
+
