@@ -1,5 +1,6 @@
 const APAPI_URL_RAMDOM  = 'https://api.thecatapi.com/v1/images/search?limit=2&api_key=live_pL0L39wO8vuZvcDVE4rITm1sgE6ba382YvPEeiO0033b0Yk50yrn6eizUQzj39zT'
 const API_URL_FAVOURITES  = 'https://api.thecatapi.com/v1/favourites?api_key=live_pL0L39wO8vuZvcDVE4rITm1sgE6ba382YvPEeiO0033b0Yk50yrn6eizUQzj39zT';
+const API_URL_FAVOURITES_DELETE = (id) =>`https://api.thecatapi.com/v1/favourites/${id}?api_key=live_pL0L39wO8vuZvcDVE4rITm1sgE6ba382YvPEeiO0033b0Yk50yrn6eizUQzj39zT`;
 
 const button = document.getElementById('button')
 
@@ -40,8 +41,14 @@ async function loadFavouritesMichi(){
     if (res.status !== 200) {
         spanError.innerText = "Hubo un error " + res.status + data.message;
     } else {
-       data.forEach(michis => {
         const section = document.getElementById('favoritesMichi')
+       section.innerHTML = "";
+       const h2 = document.createElement('h2');
+       const h2Text = document.createTextNode('Michis Favoritos')
+       h2.appendChild(h2Text)
+       section.appendChild(h2)
+        
+       data.forEach(michis => {
         const article = document.createElement('article');   
         const img = document.createElement('img');   
         const btn = document.createElement('button'); 
@@ -50,7 +57,7 @@ async function loadFavouritesMichi(){
         btn.appendChild(btnText);
         img.src = michis.image.url
         img.width = 150;
-
+        btn.onclick = () => deleteFavouriteMichi(michis.id)
         article.appendChild(img)
         article.appendChild(btn)
         section.appendChild(article)
@@ -75,10 +82,25 @@ async function saveFavoriteMichi(id){
 
     if (res.status !== 200) {
         spanError.innerText = "Hubo un error " + res.status + data.message;
+    } else{
+        console.log('Michi guardado en favoritos');
+        loadFavouritesMichi()
     }
 }
 
+async function deleteFavouriteMichi(id){
+    const res = await fetch(API_URL_FAVOURITES_DELETE(id),{
+        method: 'DELETE',
+    })
+    const data = await res.json()
 
+    if (res.status !== 200) {
+        spanError.innerText = "Hubo un error " + res.status + data.message;
+    } else {
+        console.log('Michi eliminado de Favorito');
+        loadFavouritesMichi();
+    }
+}
 loadRamdomMichis()
 loadFavouritesMichi()
 
