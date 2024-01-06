@@ -9,11 +9,14 @@
 <body>
     <header>
         <div class="tittle-Michis">
-            <h1>Mihis App</h1>
+            <h1>Michis App</h1>
         </div>
     </header>
     <main>
-        <section id="MichisAleatorios" class="MichisAleatorios"
+        <section class="main">
+
+            <div>
+                <section id="MichisAleatorios" class="MichisAleatorios"
         >
             <h2>Michis Aleatorios</h2>
 
@@ -34,26 +37,27 @@
             </div>
            
             <span id="error"></span>
-        </section>
-        
-        <section id="uploadMichi" class="uploadMichi">
-            <h2>Sube la foto de tu michi</h2>
-    
-            <form id="uploadingForm">
-                <input type="file" id="file" name="file">
-                <button type="button" onclick="uploadMichiPhoto()">Subir foto de michi</button>
-            </form>
-        </section>
-    
-        <section id="favoritesMichi">
+                </section>
+                <section id="uploadMichi" class="uploadMichi">
+                    <h2>Sube la foto de tu michi</h2>
+            
+                    <form id="uploadingForm">
+                        <input type="file" id="file" name="file">
+                        <button type="button" onclick="uploadMichiPhoto()">Subir foto de michi</button>
+                    </form>
+                </section>
+            </div>
+            
+            <section id="favoritesMichi">
             <h2>Michis favoritos</h2>
     
             <article>
                 <img id="img3" alt="Imagenes aleatorias de gatitos" width="200">
                 <button>Sacar al michi de favorito</button>
             </article>
+            </section>
+
         </section>
-    
     </main>
     
     <script src="./index.js"></script>
