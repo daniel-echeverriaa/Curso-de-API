@@ -58,7 +58,7 @@ html{
 }
 .MichisAleatorios .ramdom-img button:hover {
     transition: all .5s;
-    transform: scale(1.1);
+    transform: scale(1.11);
     color: #5C8374;
     background-color: white;
 }
